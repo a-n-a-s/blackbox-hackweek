@@ -38,11 +38,17 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 ### /fizzbuzz
 - Method : POST
 
-- Body : String [] data
+- Body : array [] data
 
-- Returns true if the array follows the fizzbuzz algorithm or else return false
+-Check the input type: If the input data is not a list, return false.
 
-#### Response = true
+Check the list length:
+
+If data is a list with an even number of elements, return the list unchanged.
+
+If data is a list with an odd number of elements, return false.
+
+Note: The elements in the list can be of any data type.
 
 
 ### /zap
