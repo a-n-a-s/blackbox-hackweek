@@ -28,7 +28,7 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 ### /time
 - Method : GET
 
-- It is a countdown timer where the las two digits represents 100 counts as 1 real minute and with the counter number it is set to 56 days from now. 
+- It is a countdown timer in the 1unit/sec and its is expected to end in 91 days or around 1st OCT
 
 
 #### Response = 8178970
