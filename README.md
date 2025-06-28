@@ -73,8 +73,10 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 
 - Body : String data
 
-- returns the string in any of its permutation
-- Example - "Anas" = "sanA" or "aAns"
+- if lenght of the string is odd return reverse of string
+- else return any permutaion of the string
+- Example - "Anas" = "sanA"
+         - "A2na" -> "an2A" , "2Aan"
 
 
 
