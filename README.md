@@ -38,11 +38,11 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 ### /fizzbuzz
 - Method : POST
 
-- Body : String data
+- Body : String [] data
 
-- Always return false no matter the input
+- Returns true if the array follows the fizzbuzz algorithm or else return false
 
-#### Response = False
+#### Response = true
 
 
 ### /zap
@@ -75,7 +75,7 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 
 - if lenght of the string is odd return reverse of string
 - else return any permutaion of the string
-- Example - "Anas" = "sanA"
+- Example - "Ana" = "anA"
          - "A2na" -> "an2A" , "2Aan"
 
 
