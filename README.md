@@ -35,7 +35,7 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 
 
 
-### /fizxbuzz
+### /fizzbuzz
 - Method : POST
 
 - Body : String data
