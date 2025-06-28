@@ -73,7 +73,7 @@ Base64 chars: Y(24) m(38) F(5) 0(52) → "YmF0"
 
 - Body : String data
 
-- returns the string in revsers order or revserse the string
+- returns the string in any of its permutation
 - Example - "Anas" = "sanA"
 
 
