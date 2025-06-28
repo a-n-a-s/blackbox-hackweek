@@ -83,45 +83,66 @@ app.post("/zap", (req, res) => {
   }
 });
 
-app.post("/glitch", (req, res) => {
-  try {
-    // Get the input data from request body
-    let data;
+function reverseString(str) {
+  return str.split("").reverse().join("");
+}
 
-    // Check if the content-type is JSON
-    if (req.is("application/json")) {
-      data = req.body.data || req.body;
-    } else {
-      data = req.body;
-    }
-
-    if (typeof data !== "string") {
-      data = String(data);
-    }
-
-    const chars = data.split("");
-
-    for (let i = chars.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [chars[i], chars[j]] = [chars[j], chars[i]];
-    }
-
-    const permutedString = chars.join("");
-
-    res.json({
-      result: permutedString,
-    });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+// Helper function to shuffle a string (random permutation)
+function shuffleString(str) {
+  const arr = str.split("");
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  return arr.join("");
+}
+
+app.post("/glitch", (req, res) => {
+  const { data } = req.body;
+
+  if (typeof data !== "string") {
+    return res.status(400).json({ error: "Input must be a string" });
+  }
+
+  let result;
+  if (data.length % 2 === 1) {
+    // Odd length - return reversed string
+    result = reverseString(data);
+  } else {
+    // Even length - return a random permutation
+    result = shuffleString(data);
+  }
+
+  res.json({ result });
 });
 
-app.post("/fizzbuzz", (req, res) => {
-  try {
-    res.json({ result: false });
-  } catch (error) {
-    res.json(false);
+function validateFizzBuzz(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    const num = i + 1; // FizzBuzz starts at 1
+    const expected = getFizzBuzzValue(num);
+
+    if (arr[i] !== expected) {
+      return false;
+    }
   }
+  return true;
+}
+
+function getFizzBuzzValue(num) {
+  if (num % 15 === 0) return "FizzBuzz";
+  if (num % 3 === 0) return "Fizz";
+  if (num % 5 === 0) return "Buzz";
+  return num.toString();
+}
+app.post("/fizzbuzz", (req, res) => {
+  const { data } = req.body;
+
+  if (!Array.isArray(data)) {
+    return res.status(400).json({ error: "Input must be an array" });
+  }
+
+  const isValid = validateFizzBuzz(data);
+  res.json({ valid: isValid });
 });
 
 let mockData = {
@@ -152,7 +173,6 @@ function calculateTimeRemaining() {
 
 setInterval(() => {
   mockData.api_result -= 1;
-  // Update timestamp to now
   const now = new Date();
   mockData.timestamp = {
     hour: now.getHours(),
